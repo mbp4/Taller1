@@ -5,7 +5,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
@@ -17,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.taller1.ui.theme.Taller1Theme
 import java.util.Calendar
 import java.util.Calendar.*
@@ -43,14 +47,32 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(modifier: Modifier) {
-    val hora = Calendar.getInstance().get(HOUR_OF_DAY)
-    val bienvenida = when{
-        hora < 12 -> "Buenos dias"
-        hora < 20 -> "Buenas tardes"
-        else -> "Buenas noches"
-    }
+    Column {
+        Spacer(modifier = Modifier.height(20.dp))
 
-    Text(text = bienvenida.toString())
+        val hora = Calendar.getInstance().get(HOUR_OF_DAY)
+        val bienvenida = when {
+            hora < 12 -> "Buenos dias"
+            hora < 20 -> "Buenas tardes"
+            else -> "Buenas noches"
+        }
+
+        Text(text = bienvenida.toString())
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        val context = LocalContext.current
+        Button(onClick = {
+            context.startActivity(
+                Intent(
+                    context,
+                    Inicio::class.java
+                )
+            ) //cambiar a la clase para las estadisticas
+        }) {
+            Text("INICIO")
+        }
+    }
 
 }
 
