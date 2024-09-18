@@ -68,7 +68,7 @@ fun Greeting(modifier: Modifier) {
                     context,
                     Inicio::class.java
                 )
-            ) //cambiar a la clase para las estadisticas
+            )
         }) {
             Text("INICIO")
         }
