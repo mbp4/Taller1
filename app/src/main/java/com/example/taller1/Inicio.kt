@@ -53,6 +53,9 @@ fun lectorNombre(){
 
         Text(text = "Bienvenido " + nombre.value)
 
+        Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
+
+        BotonConfiguracion()
     }
 
 }
