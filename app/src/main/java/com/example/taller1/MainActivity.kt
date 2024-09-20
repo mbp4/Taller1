@@ -52,7 +52,7 @@ fun Greeting(modifier: Modifier) {
 
         val hora = Calendar.getInstance().get(HOUR_OF_DAY)
         val bienvenida = when {
-            hora < 12 -> "Buenos dias"
+            hora < 13 -> "Buenos dias"
             hora < 20 -> "Buenas tardes"
             else -> "Buenas noches"
         }
