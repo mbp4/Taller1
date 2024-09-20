@@ -76,10 +76,7 @@ fun BotonConfiguracion(){
     val context = LocalContext.current
     Button(onClick = {
         context.startActivity(
-            Intent(
-                context,
-                Configuracion::class.java
-            )
+            Intent(context, Config:: class.java)
         )
     }) {
         Text("CONFIGURACION")
