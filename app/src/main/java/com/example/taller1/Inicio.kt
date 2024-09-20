@@ -1,5 +1,6 @@
 package com.example.taller1
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -33,9 +34,14 @@ class Inicio: ComponentActivity(){
 }
 
 @Composable
-fun lectorNombre(){
+fun lectorNombre(context: Context){
 
     val nombre = remember { mutableStateOf("") }
+
+    val sharedPreferences = remember {
+        context.getSharedPreferences("misPreferencias", Context.MODE_PRIVATE)
+    }
+
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,)
@@ -50,14 +56,18 @@ fun lectorNombre(){
         Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
 
         Button(onClick = {
-
+            with(sharedPreferences.edit()) {
+                putString("nombre", nombre.value)
+                apply()
+            }
         }) {
             Text("Guardar")
         }
 
         Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
 
-        Text(text = "Bienvenido " + nombre.value)
+        val nombreGuardado = remember { sharedPreferences.getString("nombre", "") ?: "" }
+        Text(text = "Bienvenido " + nombreGuardado)
 
         Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
 
@@ -70,7 +80,8 @@ fun lectorNombre(){
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    lectorNombre()
+    val context = LocalContext.current
+    lectorNombre(context)
 }
 
 
