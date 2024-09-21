@@ -25,19 +25,19 @@
             </intent-filter>
         </activity>
 
-        <!-- Inicio activity: accesible desde la app pero no desde el lanzador -->
         <activity
             android:name=".Inicio"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Taller1" />
+            android:theme="@style/Theme.Taller1"
+        />
 
-        <!-- Config activity: accesible desde la app pero no desde el lanzador -->
         <activity
             android:name=".Config"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Taller1" />
+            android:theme="@style/Theme.Taller1"
+            />
 
     </application>
 
