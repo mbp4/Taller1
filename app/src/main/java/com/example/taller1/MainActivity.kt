@@ -37,11 +37,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
-
-
-
                 // Aplicamos el color de fondo usando el estado mutable backgroundColor
                 Scaffold(
                     modifier = Modifier
