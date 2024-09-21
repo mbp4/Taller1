@@ -18,30 +18,23 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color as ComposeColor
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.taller1.ui.theme.Taller1Theme
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.util.Calendar
+import androidx.compose.ui.graphics.Color as ComposeColor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge() //con esta funcion conseguimos ver a pantalla completa y sin bordes
         setContent {
-                // Aplicamos el color de fondo usando el estado mutable backgroundColor
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
-                        //.background(backgroundColor.value) // Aplicar el color de fondo
                 ) { innerPadding ->
                     Greeting(
                         modifier = Modifier
@@ -49,7 +42,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .wrapContentSize(Alignment.Center)
                     )
-                }
+                } //gracias al scaffold y lo que esta programado dentro conseguimos que el contenido se adapte a la pantalla y a como queremos que se visualice
 
         }
     }
@@ -61,31 +54,33 @@ fun Greeting(modifier: Modifier) {
     val context = LocalContext.current
     val preferences = context.getSharedPreferences("BackgroundPrefs", MODE_PRIVATE)
 
-    // Se inicializa el color guardado en las preferencias
     val savedColor = preferences.getInt("backgroundColor", android.graphics.Color.WHITE)
     val backgroundColor = remember { mutableStateOf(getComposeColor(savedColor)) }
+    //estas variables las utilizaremos para poder cambiar el color de fondo de la pantalla cuando se haga algun cambio en la activity de configuracion
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundColor.value),  // Aplica el color de fondo recuperado
+            .background(backgroundColor.value),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
+        //utilizamos el modifier dentro de un column para poder centrar el contenido
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
 
-        val hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) //usamos una variable que guarde la hora en la que se esta haciendo uso de la aplicación
         val bienvenida = when {
             hora < 13 -> "Buenos días"
             hora < 20 -> "Buenas tardes"
             else -> "Buenas noches"
         }
+        //creamos una variable bienvenida que cambiara dependiendo de la hora en la que se use la aplicación
 
-        Text(text = bienvenida)
+        Text(text = bienvenida) //campo de texto para poder mostrar el mensaje de bienvenida
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp)) //damos un espacio para que el boton no se vea muy pegado al texto
 
-        val context = LocalContext.current
+        val context = LocalContext.current //creamos una variable que almacene el contextp de la aplicación
+
         Button(onClick = {
             context.startActivity(
                 Intent(context, Inicio::class.java)
@@ -93,12 +88,10 @@ fun Greeting(modifier: Modifier) {
         }) {
             Text("INICIO")
         }
+        //creamos un boton que nos llevara a la pantalla de inicio
     }
 }
 
-
-
-// Esta función convierte el color en formato Android a formato Compose
 fun getComposeColor(color: Int): ComposeColor {
     return ComposeColor(
         android.graphics.Color.red(color) / 255f,
@@ -106,4 +99,5 @@ fun getComposeColor(color: Int): ComposeColor {
         android.graphics.Color.blue(color) / 255f,
         android.graphics.Color.alpha(color) / 255f
     )
+    //esta funcion sera una funcion que utilizaremos en todas las clases para poder cambiar el color
 }
