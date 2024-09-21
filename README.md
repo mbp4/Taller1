@@ -182,9 +182,85 @@ Por último, encontramos un boton que permite al usuario navegar a la pantalla d
 En esta parte se nos pedia crear una pantalla que diera al usuario la opcion de cambair el fondo de la aplicación y volver al inicio de la aplicacion, su psudocódigo sería: 
 
 ```
+CLASE Config HEREDA DE ComponentActivity {
 
+    SOBREESCRIBIR función onCreate(Bundle?) {
 
+        super.onCreate(savedInstanceState)
+
+        CONFIGURAR Contenido {
+            MostrarPreview2()
+        }
+    }
+}
+
+FUNCIÓN MostrarPreview2() {
+    Configur() 
+}
+
+FUNCIÓN Configur() {
+    CONTEXTO = LocalContext.current
+
+    PREFERENCIAS = contexto.obtenerSharedPreferences("BackgroundPrefs", MODE_PRIVATE)
+   
+    COLOR_GUARDADO = preferencias.getInt("backgroundColor", Color.BLANCO)
+
+    COLOR_DE_FONDO = recordar { estadoMutable(getComposeColor(COLOR_GUARDADO)) }
+
+    CREAR COLUMNA {
+        OCUPAR TodaPantalla
+        FONDO = COLOR_DE_FONDO
+        ALINEAR HORIZONTALMENTE al centro
+        ORGANIZAR VERTICALMENTE al centro
+
+        CrearBotón {
+            contexto.iniciarActividad(MainActivity::class)
+        }
+        MostrarTexto("INICIO")
+
+        ESPACIO(altura = 16.dp)
+
+        CrearBotón {
+            COLOR_DE_FONDO.valor = ComposeColor.BLANCO
+            guardarColorFondo(contexto, Color.BLANCO)
+        }
+        MostrarTexto("Blanco")
+
+        ESPACIO(altura = 16.dp)
+
+        CrearBotón {
+            COLOR_DE_FONDO.valor = ComposeColor(0xFFaec6cf) 
+            guardarColorFondo(contexto, Color.rgb(174, 198, 207))
+        }
+        MostrarTexto("Azul")
+
+        ESPACIO(altura = 16.dp)
+
+        CrearBotón {
+            COLOR_DE_FONDO.valor = ComposeColor(0xFFfdfd96) 
+            guardarColorFondo(contexto, Color.rgb(253, 253, 150))
+        }
+        MostrarTexto("Amarillo")
+    }
+}
+
+FUNCIÓN guardarColorFondo(contexto: Context, color: Int) {
+    PREFERENCIAS = contexto.obtenerSharedPreferences("BackgroundPrefs", MODE_PRIVATE)
+
+    con(preferencias.editar()) {
+        ponerInt("backgroundColor", color)
+        aplicar() // Aplicamos los cambios
+    }
+}
 ```
+En esta activity usamos la principal función para poder mostrar lo programado en las siguientes funciones. 
 
+Las funcion de Configur contiene unas variables las cuales son las encargadas de almacenar el color en el caso de que el usuario haya decidido cambiar el fondo de la aplicación. Si continuamos desglosando la funcion nos encontraremos un column para poder organizar los elementos de manera vertical.
+
+Lo siguiente que vemos es un botón que permite al usuario volver a la pantalla de inicio.
+
+Después varios botones que permiten al usuario cambiar el color del fondo a la aplicación.
+
+Por último, encontramos una función que guarda el estado del color de fondo y aplicar los cambios necesarios.
 
 
