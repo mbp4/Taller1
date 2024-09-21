@@ -29,36 +29,38 @@ class Inicio : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GreetingPreview()
+            GreetingPreview() //mostramos la pantalla de inicio haciendo uso de un preview
         }
     }
 }
 
 @Composable
 fun lectorNombre(context: Context) {
-    val nombre = remember { mutableStateOf("") }
+    val nombre = remember { mutableStateOf("") } //creamos una variable que cambie su estado en el caso de que esta se modifique, inicialmente aparece vacia
 
-    // Recupera el color de fondo guardado en las preferencias
     val sharedPreferences = remember {
         context.getSharedPreferences("BackgroundPrefs", Context.MODE_PRIVATE)
     }
     val savedColor = sharedPreferences.getInt("backgroundColor", android.graphics.Color.WHITE)
     val backgroundColor = remember { mutableStateOf(getComposeColor(savedColor)) }
+    //estas variables las utilizaremos para poder cambiar el color de fondo de la pantalla cuando se haga algun cambio en la activity de configuracion
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundColor.value),  // Aplica el color de fondo recuperado
+            .background(backgroundColor.value),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
+        //utilizamos el modifier dentro de un column para poder centrar el contenido
     ) {
         TextField(
-            value = nombre.value,
-            onValueChange = { nombre.value = it },
+            value = nombre.value, //cambiamos el valor del nombre por el introducido por el usuario
+            onValueChange = { nombre.value = it }, //actualizamos la variable para el nombre
             label = { Text("Nombre") }
+            //creamos un textfield para que el usuario pueda introducir su nombre
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp)) //damos una separacion
 
         Button(onClick = {
             with(sharedPreferences.edit()) {
@@ -71,21 +73,23 @@ fun lectorNombre(context: Context) {
         }) {
             Text("Guardar")
         }
+        //con este boton guardamos el nombre y hacemos que la pagina se reinice para que el usuario vea el nombre que ha introducido
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp)) //damos un espacio
 
         val nombreGuardado = remember { sharedPreferences.getString("nombre", "") ?: "" }
+        //creamos una variable que guarde el nombre que ha guardado el usuario
 
-        // Usar AndroidView para mostrar el saludo como un TextView
         AndroidView(factory = { ctx ->
             TextView(ctx).apply {
                 text = "Bienvenido $nombreGuardado"
             }
         })
+        //usamos AndroidView para poder mostrar el nombre que ha guardado el usuario haciendo uso del textView
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp)) //damos un espacio
 
-        BotonConfiguracion()
+        BotonConfiguracion() //llamamos a la funcion que crea el boton de configuracion
     }
 }
 
@@ -94,6 +98,7 @@ fun lectorNombre(context: Context) {
 fun GreetingPreview() {
     val context = LocalContext.current
     lectorNombre(context)
+    //llamamos a la funcion para que nos de un preview de la pantalla
 }
 
 @Composable
@@ -108,4 +113,6 @@ fun BotonConfiguracion() {
     }) {
         Text("CONFIGURACION")
     }
+
+    //creamos un boton que nos llevara a la pantalla de configuracion
 }
