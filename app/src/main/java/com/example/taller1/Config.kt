@@ -74,8 +74,8 @@ fun Configur() {
         Spacer(modifier = Modifier.height(16.dp)) //damos espacio
 
         Button(onClick = {
-            backgroundColor.value = ComposeColor(0xFF77B5D9)
-            saveBackgroundColor(context, android.graphics.Color.rgb(119, 181, 217))
+            backgroundColor.value = ComposeColor(0xFFaec6cf)
+            saveBackgroundColor(context, android.graphics.Color.rgb(174, 198, 207))
         }) {
             Text("Azul")
         }
