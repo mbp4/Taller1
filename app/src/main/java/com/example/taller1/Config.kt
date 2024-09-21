@@ -74,8 +74,8 @@ fun Configur() {
         Spacer(modifier = Modifier.height(16.dp)) //damos espacio
 
         Button(onClick = {
-            backgroundColor.value = ComposeColor.Blue
-            saveBackgroundColor(context, android.graphics.Color.BLUE)
+            backgroundColor.value = ComposeColor(0xFF77B5D9)
+            saveBackgroundColor(context, android.graphics.Color.rgb(119, 181, 217))
         }) {
             Text("Azul")
         }
@@ -84,8 +84,8 @@ fun Configur() {
         Spacer(modifier = Modifier.height(16.dp)) //damos espacio
 
         Button(onClick = {
-            backgroundColor.value = ComposeColor.Yellow
-            saveBackgroundColor(context, android.graphics.Color.YELLOW)
+            backgroundColor.value = ComposeColor(0xFFfdfd96)
+            saveBackgroundColor(context, android.graphics.Color.rgb(253, 253, 150))
         }) {
             Text("Amarillo")
         }
