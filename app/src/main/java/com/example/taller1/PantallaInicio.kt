@@ -43,7 +43,6 @@ class MainActivity : ComponentActivity() {
                             .wrapContentSize(Alignment.Center)
                     )
                 } //gracias al scaffold y lo que esta programado dentro conseguimos que el contenido se adapte a la pantalla y a como queremos que se visualice
-
         }
     }
 }
