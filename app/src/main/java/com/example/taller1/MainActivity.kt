@@ -86,7 +86,7 @@ fun Greeting(modifier: Modifier) {
                 Intent(context, Inicio::class.java)
             )
         }) {
-            Text("INICIO")
+            Text("APLICACIÓN")
         }
         //creamos un boton que nos llevara a la pantalla de inicio
     }
