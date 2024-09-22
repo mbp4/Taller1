@@ -275,3 +275,5 @@ Al usar Composable los errores que han aparecido a la hora de programar han sido
 
  -> Al momento de guardar el nombre que el usuario introducia por pantalla este se guardaba pero no aparecía en el mensaje de bienvenida personalizado, este aparecía cuando recargabas la       respectiva pantalla, por lo tanto, para resolver este problema decidí que la mejor idea fuese que al pulsar el boton de guardado de nombre (el cual altera el valor de la variable que       guarda el mismo) volviera a ir a la pantalla, con esto conseguimos que se reinicie la pantalla y el mensaje aparezca sin necesidad de cambiar de pantalla para luego volver a la misma       sin que el usuario este seguro de que el nombre que introdujo se guardó correctamente.
 
+ -> Otro aspecto a tener en cuenta a la hora de introducir un nombre, si el usuario decide pulsar el boton sin introducir nada por pantalla, la variable no se verá alterada y el mensaje de     bienvenida será uno sin personalizar
+
