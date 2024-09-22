@@ -4,7 +4,9 @@ Enlace al repositorio: https://github.com/mbp4/Taller1.git
 
 En el ejercicio propuesto se nos solicitaba realizar una aplicación en el entorno de desarrollo de Android Studio que proporcionase un saludo personalizado, la posibilidad de guardar el nombre del usuario, la posibilidad de cambiar el fondo de la aplicación y botones para navegar entre las pantallas. 
 
-## PANTALLA INICIO
+## EXPLICACIÓN 
+
+### Pantalla de inicio
 
 En esta parte se nos pedia crear una pantalla que diera una bienvenida dependiendo de la hora en la que se este utilizando la aplicación y un boton que nos lleve a la actividad prinicipal, su psudocódigo sería: 
 
@@ -80,7 +82,7 @@ Dentro del column encontramos una variable que se encarga de coger la hora en es
 
 Por último, encontramos un boton que nos permite navegar a la siguiente pantalla, en este caso la inicial.
 
-## ACTIVIDAD PRINCIPAL
+### Actividad principal 
 
 En esta parte se nos pedia crear una pantalla que diera la opcion de que el usuario introduzca un nombre, que este se guarde y un botón que te permita navegar hasta la pantalla de configuracion, su psudocódigo sería: 
 
@@ -177,7 +179,7 @@ Después encontramos una variable que almacena el nombre y haciendo uso de textV
 
 Por último, encontramos un boton que permite al usuario navegar a la pantalla de configuracion. 
 
-## CONFIG
+### Pantalla de configuración
 
 En esta parte se nos pedia crear una pantalla que diera al usuario la opcion de cambair el fondo de la aplicación y volver al inicio de la aplicacion, su psudocódigo sería: 
 
@@ -263,4 +265,13 @@ Después varios botones que permiten al usuario cambiar el color del fondo a la 
 
 Por último, encontramos una función que guarda el estado del color de fondo y aplicar los cambios necesarios.
 
+## PROCESO DE DESARROLLO
+
+Para la realizacion del proyecto se ha optado por usar Jetpack Compose ya que fue lo más visto durante las clases por lo que me resulto más sencillo que usar la opcion de layout, ya que aunque parece más simple necesitaba entender su funciónamiento para poder realizar la entrega de la mejor manera. 
+
+Al usar Composable los errores que han aparecido a la hora de programar han sido en la parte del background y a la hora de gaurdar el nombre: 
+
+ -> Al cambiar el fondo de la aplicación se lograba hacer en la pantalla de configuración únicamente, es decir, el color de fondo no se guardaba al navegar entre activities, para esto se       ha hecho uso de variables las cuales se encargaban de tener un estado el cual iba a cambiar dependiendo de la elección del usuario.
+
+ -> Al momento de guardar el nombre que el usuario introducia por pantalla este se guardaba pero no aparecía en el mensaje de bienvenida personalizado, este aparecía cuando recargabas la       respectiva pantalla, por lo tanto, para resolver este problema decidí que la mejor idea fuese que al pulsar el boton de guardado de nombre (el cual altera el valor de la variable que       guarda el mismo) volviera a ir a la pantalla, con esto conseguimos que se reinicie la pantalla y el mensaje aparezca sin necesidad de cambiar de pantalla para luego volver a la misma       sin que el usuario este seguro de que el nombre que introdujo se guardó correctamente.
 
